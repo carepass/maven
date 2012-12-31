@@ -154,5 +154,3 @@ You can then add the CarePass Sync and CarePass HTS built project to your own ma
 		<artifactId>consumer-platform-carepass-java-connector</artifactId>
 	</dependency>
 
-
-

@@ -4,6 +4,7 @@
 *.jar
 *.war
 *.ear
+<<<<<<< HEAD
 
 *.iml
 *.ipr
@@ -37,3 +38,5 @@ local.properties
 
 # PDT-specific
 .buildpath
+=======
+>>>>>>> d49611f519a30505c16c35ae00fc271251ee4d48
