@@ -1,6 +1,8 @@
 CarePass Java Client Libraries
 ====================================
 
+This is the maven repository for the carepass java client libraries.
+
 The goal of these libraries is to remove the need for a CarePass developer to manage the baseline connectivity and data un-packing of interacting with the CarePass APIs.
 
 There are two main libraries, CarepassSync for interaction around the current user and HTS which contains interactions for drugs, claims, clinical trials.
