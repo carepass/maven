@@ -14,7 +14,7 @@ CarePass Sync Configuration
 
 The main configuration for OAuth authentification should looks like the below portion of code, that has to be set in your Spring configuration file
 
-
+```xml
 	<!-- OAuth -->
 	<bean id="carePassOAuthData"
 		class="com.aetna.carepass.oauth.connector.scribe.api.CarePassOAuthData">
@@ -32,6 +32,7 @@ The main configuration for OAuth authentification should looks like the below po
 		<property name="scope" value="THE_REQUIRED_SCOPE" />
 	</bean>
 	<!--End OAuth -->
+```
 
 In order to use the CarePass Sync library the client application needs to start the OAuth 2 authentication work flow. The OAuth work flow has 2 main steps
 we should be interested in :
@@ -40,6 +41,7 @@ we should be interested in :
 	
 ### Retrieving Grant Code
 
+``java
 	@Autowired
 	private CarePassOAuth carePassOAuth;
 
@@ -47,6 +49,7 @@ we should be interested in :
 	public String carePassLogin() {
 		return "redirect:" + carePassOAuth.retrieveInitialRequest();
 	}
+```
 	  	
 The application will redirect to Carepass for the user to enter their username/password if it initially does not have the Access Token. Once they are successfully 
 authenticated the user is redirected back to their application based on the redirect url setup which redirects to the request mapping "/carepass-callback" with a grant code.
@@ -56,7 +59,8 @@ authenticated the user is redirected back to their application based on the redi
 Using the received grant code, call is made to /token endpoint with additional parameters as seen below
 
 ### Exchanging Grant Code for Access Token
-	
+
+```java
     @RequestMapping(value = { "RESPONSE_AUTHENTIFICATION_CODE_URI" }, method = RequestMethod.GET)
 	public String carePassLoginSuccess(
 			@RequestParam(value = "code", required = false) String oauthVerifier,
@@ -64,6 +68,7 @@ Using the received grant code, call is made to /token endpoint with additional p
 		carePassOAuth.grantOauthAccess(oauthVerifier);
 		return "endpoint";
 	}
+```
 				
 The retrieved access_token is stored in the CarePassOAuth service and could be requested to be used. 
 
@@ -72,6 +77,7 @@ CarePass Sync Endpoint Implementation Example
 
 The following is an example of an API call after getting the access_token 
 
+```java
 	@Autowired
 	private IdentityService identityService;
 
@@ -91,13 +97,14 @@ The following is an example of an API call after getting the access_token
 		}
 		return "USER_IDENTITY_PAGE";
 	}
-		
+```		
 	
 CarePass HTS Configuration
 ===========================
 
 The main configuration for HTS should looks like the below portion of code, that has to be set in your Spring configuration file
 
+```xml
 	<bean id="hhsApiService" class="com.aetna.carepass.hhs.hhsapi.HhsApiServiceImpl">
 		<property name="apiKey" value="HHS_API_KEY"></property>
 	</bean>
@@ -111,13 +118,14 @@ The main configuration for HTS should looks like the below portion of code, that
 		class="com.aetna.carepass.hhs.claims.DeIdentificatedClaimsApiServiceImpl">
 		<property name="apiKey" value="DE_IDENTIFICATED_CLAIMS_API_KEY"></property>
 	</bean>
-
+```
 
 CarePass HTS Endpoint Implementation Example
 =============================================
 
 The following is an example of an API an ECC's api call. 
 
+```java
 	@RequestMapping(value = { "/MAPPED_API_CALL_URI" }, method = RequestMethod.GET)
 	public String listMedicalCCCpt(
 			@RequestParam(value = "REQUEST_PARAMETER_1", required = false) String rp1,
@@ -136,21 +144,29 @@ The following is an example of an API an ECC's api call.
 		}
 		return "hhs/ecc";
 	}
+```	
 	
 Adding the CarePass Java Client Libraries to Your Project
 ========================================================
 
-The Java Client library for CarePass is a Maven project.  While it is not available in a Maven repository, you may download it and build it locally.  It will load it's own dependencies from external repositories.
+The Java Client library for CarePass is a Maven project.
 
-1.  The code for the project can be found here:  <https://github.com/carepass/client-libraries/tree/Java>
-2.  If you do not already have Maven installed, it can be downloaded here: <http://maven.apache.org/download.html>
-3.  Once you have downloaded the code and installed Maven, build the project by using `mvn clean install`
 
-	
-You can then add the CarePass Sync and CarePass HTS built project to your own maven project with the below dependency:	
-		
+Using Maven(or ivy, sbt, etc), add the following to your pom.xml:
+```xml
+<repositories>
+	<repository>
+		<id>github</id>
+		<name>Carepass Client Libraries Repository</name>
+		<url>https://github.com/carepass-java-maven/raw/master</url>
+	</repository>
+</repositories>
+
+<dependencies>
 	<dependency>
 		<groupId>com.aetna.carepass</groupId>
 		<artifactId>consumer-platform-carepass-java-connector</artifactId>
-	</dependency>
-
+		<version>2.1-SNAPSHOT</version>
+	  </dependency>
+</dependencies>
+```
