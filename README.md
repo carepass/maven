@@ -41,7 +41,7 @@ we should be interested in :
 	
 ### Retrieving Grant Code
 
-``java
+```java
 	@Autowired
 	private CarePassOAuth carePassOAuth;
 
