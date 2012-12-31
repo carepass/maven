@@ -7,10 +7,10 @@
     <version>1.0-SNAPSHOT</version>
     <name>consumer-platform-carepass-java-connector</name>
     <description>client library for carepass</description>
-    <url>https://github.com/ferronrsmith/client-libraries/tree/Java</url>
+    <url>https://github.com/ferronrsmith/carepass-java-maven</url>
 
     <issueManagement>
-        <url>https://github.com/carepass/client-libraries/issues</url>
+        <url>https://github.com/ferronrsmith/carepass-java-maven/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 
@@ -23,9 +23,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/ferronrsmith/client-libraries/tree/Java</url>
-        <connection>scm:git:git@github.com:ferronrsmith/client-libraries.git</connection>
-        <developerConnection>scm:git:git@github.com:ferronrsmith/client-libraries.git</developerConnection>
+        <url>https://github.com/ferronrsmith/carepass-java-maven</url>
+        <connection>scm:git:git@github.com:ferronrsmith/carepass-java-maven.git</connection>
+        <developerConnection>scm:git:git@github.com:ferronrsmith/carepass-java-maven.git</developerConnection>
     </scm>
 
     <developers>
