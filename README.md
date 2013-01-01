@@ -57,7 +57,7 @@ The application will redirect to Carepass for the user to enter their username/p
 authenticated the user is redirected back to their application based on the redirect url setup which redirects to the request mapping "/carepass-callback" with a grant code.
   	  	  	
 ```java
-	**http://{YOUR_APPLICATION_CAREPASS_REDIRECT_URL}?code={ACCESS_CODE}**
+	http://{YOUR_APPLICATION_CAREPASS_REDIRECT_URL}?code={ACCESS_CODE}
 ```}
 	
 Using the received grant code, call is made to /token endpoint with additional parameters as seen below
