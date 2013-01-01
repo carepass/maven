@@ -38,8 +38,8 @@ The main configuration for OAuth authentification should looks like the below po
 
 In order to use the CarePass Sync library the client application needs to start the OAuth 2 authentication work flow. The OAuth work flow has 2 main steps
 we should be interested in :
-- Step 1 - the first is the call to the *authorize* endpoint  by a request call to USER_APPLICATION_URL/login-carepass where the apiKey, the apiSecret and the return_uri are passed to retrieve the grant code which is seen in the section *Retrieving Grant Code* below. 
-- Step 2 - after receiving the access code other call is made to retrieve the access token by calling the *token* endpoint as seen in *Exchanging Grant Code for Access Token*.
+- **Step 1 -** the first is the call to the *authorize* endpoint  by a request call to **USER_APPLICATION_URL**/login-carepass where the apiKey, the apiSecret and the return_uri are passed to retrieve the grant code which is seen in the section *Retrieving Grant Code* below.
+- **Step 2 -** after receiving the access code other call is made to retrieve the access token by calling the *token* endpoint as seen in *Exchanging Grant Code for Access Token*.
 	
 ### Retrieving Grant Code
 
@@ -56,7 +56,9 @@ we should be interested in :
 The application will redirect to Carepass for the user to enter their username/password if it initially does not have the Access Token. Once they are successfully 
 authenticated the user is redirected back to their application based on the redirect url setup which redirects to the request mapping "/carepass-callback" with a grant code.
   	  	  	
-	http://{YOUR_APPLICATION_CAREPASS_REDIRECT_URL}?code={ACCESS_CODE}
+```java
+	**http://{YOUR_APPLICATION_CAREPASS_REDIRECT_URL}?code={ACCESS_CODE}**
+```}
 	
 Using the received grant code, call is made to /token endpoint with additional parameters as seen below
 
@@ -99,7 +101,7 @@ The following is an example of an API call after getting the access_token
 		}
 		return "USER_IDENTITY_PAGE";
 	}
-```		
+```
 	
 CarePass HTS Configuration
 ===========================
