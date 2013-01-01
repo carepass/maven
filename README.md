@@ -168,7 +168,7 @@ Using Maven(or ivy, sbt, etc), add the following to your pom.xml:
 	<dependency>
 		<groupId>com.aetna.carepass</groupId>
 		<artifactId>consumer-platform-carepass-java-connector</artifactId>
-		<version>2.1-SNAPSHOT</version>
+		<version>2.2-SNAPSHOT</version>
 	  </dependency>
 </dependencies>
 ```
